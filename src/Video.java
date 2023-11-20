@@ -1,4 +1,4 @@
-public class Video extends Recording implements Play{
+public class Video extends Recording{
     
     private final double FRAMERATE;
 
@@ -10,11 +10,11 @@ public class Video extends Recording implements Play{
     }
     
     //videorecording construcotr that sends in the artist, name, video length, and framereate
-    public Video(String sendingArtist, String sendingName, int sendingSeconds, double newFrameRate){
+    public Video(String Name, String Artist, int Seconds, double FrameRate){
         //calls the super method and sends the artitst, name, and seconds
-        super(sendingArtist, sendingName, sendingSeconds);
+        super(Artist, Name, Seconds);
         //assigns framerate
-        FRAMERATE = newFrameRate;
+        FRAMERATE = FrameRate;
     }
 
     public void play(){

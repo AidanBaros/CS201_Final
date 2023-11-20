@@ -1,4 +1,4 @@
-public abstract class Recording{
+public abstract class Recording implements Play{
     
     //creating variables with final declaration so they can't be changed
     protected final String ARTIST;
@@ -50,6 +50,8 @@ public abstract class Recording{
         
         
     }
+    abstract
+    public void play();
     abstract
     public String toString();
 }
