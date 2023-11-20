@@ -1,4 +1,4 @@
-public class Audio extends Recording implements Play{
+public class Audio extends Recording{
     
     //creates final double for the bitrate object
     private final double BITRATE;
@@ -9,12 +9,12 @@ public class Audio extends Recording implements Play{
         BITRATE = 0;
     }
 
-    //audiorecoding constuructor with arguments of sendingArtist, sendingName, sending Seconds, and a new bitrate
-    public Audio(String sendingArtist, String sendingName, int sendingSeconds, double newBitRate){
-        //calls the super consctuor with sendingArtist, sendingName, and sendingSeconds
-        super(sendingArtist, sendingName, sendingSeconds);
+    //audiorecoding constuructor with arguments of Artist, Name,  Seconds, and a new bitrate
+    public Audio(String Name, String Artist, int Seconds, double BitRate){
+        //calls the super consctuor with Artist, Name, and Seconds
+        super(Artist, Name, Seconds);
         //sets bitrate to value
-        BITRATE = newBitRate;
+        BITRATE = BitRate;
     }
 
     //toString
