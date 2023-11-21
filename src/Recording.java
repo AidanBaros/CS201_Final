@@ -1,4 +1,4 @@
-public abstract class Recording implements Play{
+public abstract class Recording implements Playable{
     
     //creating variables with final declaration so they can't be changed
     protected final String ARTIST;

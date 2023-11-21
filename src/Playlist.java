@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class Playlist implements Play{
+public class Playlist implements Playable{
     ArrayList<Recording> listofRecordings;
     int runtime = 0;
 
