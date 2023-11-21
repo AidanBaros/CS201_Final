@@ -25,7 +25,7 @@ public class Playlist implements Play{
     }
 
     // adds multiple recordings to the playlist from a given file
-    public Boolean addMultipleRecordings (String File){
+    public boolean addMultipleRecordings (String File){
         try {
             File myFile = new File(File);
             Scanner myReader = new Scanner(myFile);
@@ -61,7 +61,7 @@ public class Playlist implements Play{
     }
 
     // removes a recording from the playlist based on its name
-    public Boolean removeRecording (String name){
+    public boolean removeRecording (String name){
         for (Recording recording:listofRecordings){
             if (recording.NAME.equals(name)){
                 listofRecordings.remove(recording);
@@ -73,7 +73,7 @@ public class Playlist implements Play{
     }
 
     // removes a recording from the playlist based on its index
-    public Boolean removeRecording (int index){
+    public boolean removeRecording (int index){
         try{
             runtime -= listofRecordings.get(index).DURATION_IN_SECONDS;
             listofRecordings.remove(index);
@@ -111,7 +111,7 @@ public class Playlist implements Play{
     }
 
     // saves the playlist to a .txt file
-    public boolean save (String File){
+    public boolean save (){
         try {
             File myFile = new File("playlist.txt");
             if (myFile.createNewFile()) {
@@ -136,10 +136,10 @@ public class Playlist implements Play{
     public void stats(){
         int minutes = runtime/60;
         int seconds = runtime % 60;
-        System.out.println("There are " + listofRecordings.size() + " recording the the playlist");
+        System.out.println("Nuber of recordings: " + listofRecordings.size());
 
-        System.out.println("The length of the playlist is " + minutes + "m " + seconds + "s.\n");
-        System.out.println("The Recording in the playlist:");
+        System.out.println("Duration: " + minutes + "m " + seconds + "s.");
+        System.out.println("Recordings: ");
         for (Recording recording:listofRecordings){
             System.out.println(recording.toString());
         }
