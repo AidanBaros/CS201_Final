@@ -44,7 +44,7 @@ public class Database {
             System.out.println("Which user would you like to remove? ");
             int counter = 1;
             for (User user:usersWithName){
-                System.out.println("User #" + counter++);
+                System.out.println("User #" + counter++ + ": ");
                 user.stats();
             }
             System.out.print(" -- ");
@@ -52,7 +52,7 @@ public class Database {
                 int whichUser = scanner.nextInt();
                 listofUsers.remove(usersWithName.get(whichUser - 1));
                 scanner.close();
-            return true;
+                return true;
             }catch(InputMismatchException ex){
                 System.out.println("Not an option");
                 scanner.close();

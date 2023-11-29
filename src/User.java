@@ -1,4 +1,4 @@
-public class User {
+public class User implements Playable{
     protected String name;
     protected int ID;
     protected Playlist playlist;
@@ -9,17 +9,13 @@ public class User {
         playlist = new Playlist();
     }
 
-    public void addRecording(Recording newRecording){
-        playlist.addRecording(newRecording);
-    }
-
-    public boolean addRecording(String type, String name, String artist, int duration, double rate){
+    public boolean add(String type, String name, String artist, int duration, double rate){
         if(type.equals("V")){
-            playlist.addRecording(new Video(name,artist,duration,rate));
+            playlist.add(new Video(name,artist,duration,rate));
             return true;
         }
         else if (type.equals("A")){
-            playlist.addRecording(new Audio(name,artist,duration,rate));
+            playlist.add(new Audio(name,artist,duration,rate));
             return true;
         }
         else{
@@ -27,40 +23,53 @@ public class User {
         }
     }
 
-    public boolean importPlaylist(String File){
-        return playlist.addMultipleRecordings(File);
+    public boolean add(String File){
+        return playlist.add(File);
     }
 
-    public void copyPlaylist(Playlist otherPlaylist){
-        playlist.addMultipleRecordings(otherPlaylist);
+    public void add(Playlist otherPlaylist){
+        playlist.add(otherPlaylist);
     }
 
-    public boolean reomveRecording(String name){
+    public boolean remove(String name){
         return playlist.removeRecording(name);
     }
 
-    public boolean reomveRecording(int index){
+    public boolean remove(int index){
         return playlist.removeRecording(index);
     }
 
-    public void playRecording(String name){
-        playlist.playRecording(name);
+    public void play(String name){
+        try{
+            playlist.play(name);
+        }catch(Unplayable ex){
+            System.out.println(ex.getMessage());
+        }
+        
     }
 
-    public void playRecording(int ID){
-        playlist.playRecording(ID);
+    public void play(int index){
+        try{
+            playlist.play(index);
+        }catch(Unplayable ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
-    public void playPlaylist(){
-        playlist.play();
+    public void play(){
+        try{
+            playlist.play();
+        }catch(Unplayable ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void shuffle(){
         playlist.shuffle();
     }
 
-    public boolean exportPlaylist(){
-        return playlist.save();
+    public boolean export(){
+        return playlist.save(name);
     }
 
     public void stats(){
