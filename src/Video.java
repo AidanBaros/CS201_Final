@@ -17,11 +17,12 @@ public class Video extends Recording{
         FRAMERATE = FrameRate;
     }
 
-    public void play(){
+    public void play() throws Unplayable{
         
         //creates the minutes and seconds
         int minutes = 0;
         int rSeconds = 0;
+        timesPlayed += 1;
         if(DURATION_IN_SECONDS > 0 && NAME != null && ARTIST != null)
         {
             minutes = DURATION_IN_SECONDS/60;
@@ -32,28 +33,11 @@ public class Video extends Recording{
         }
         else
         {
-            //returns null if somthing doesn't exist
-            System.out.println("ERROR: cannot play this recording");
+            throw new Unplayable("Corupted Video Recording");
         }
     }
 
     public String toString(){
-        
-        //creates the minutes and seconds
-        int minutes = 0;
-        int rSeconds = 0;
-        if(DURATION_IN_SECONDS > 0 && NAME != null && ARTIST != null)
-        {
-            minutes = DURATION_IN_SECONDS/60;
-            rSeconds = DURATION_IN_SECONDS % 60;
-            //returns the artist song name and minutes and seconds
-            //Same thing as play without the now playing
-            return (ARTIST + " - " + NAME + " [" + minutes + "m" + rSeconds + "s] [VIDEO | framerate: " + FRAMERATE + " fps]");
-        }
-        else
-        {
-            //returns null if somthing doesn't exist
-            return ("ERROR: cannot play this recording");
-        }
+        return (ARTIST + " - " + NAME + " - " + timesPlayed);
     }
 }

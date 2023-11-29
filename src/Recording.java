@@ -4,6 +4,7 @@ public abstract class Recording implements Playable{
     protected final String ARTIST;
     protected final String NAME ;
     protected final int DURATION_IN_SECONDS;
+    protected int timesPlayed = 0;
     
     //creating consturcotr with no arguments sent in
     public Recording()
@@ -51,7 +52,7 @@ public abstract class Recording implements Playable{
         
     }
     abstract
-    public void play();
+    public void play() throws Unplayable;
     abstract
     public String toString();
 }

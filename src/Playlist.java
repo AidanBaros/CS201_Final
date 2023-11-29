@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Collections;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;  
 
 public class Playlist implements Playable{
     ArrayList<Recording> listofRecordings;
@@ -19,13 +21,13 @@ public class Playlist implements Playable{
     }
 
     // adds a single recording to the playlist
-    public void addRecording (Recording newRecording){
+    public void add(Recording newRecording){
         listofRecordings.add(newRecording);
         runtime += newRecording.DURATION_IN_SECONDS;
     }
 
     // adds multiple recordings to the playlist from a given file
-    public boolean addMultipleRecordings (String File){
+    public boolean add(String File){
         try {
             File myFile = new File(File);
             Scanner myReader = new Scanner(myFile);
@@ -53,7 +55,7 @@ public class Playlist implements Playable{
     }
 
     // adds multiple recordings to the playlist from another users playlist
-    public void addMultipleRecordings (Playlist otherPlaylist){
+    public void add(Playlist otherPlaylist){
         for (Recording recording:otherPlaylist.listofRecordings){
             listofRecordings.add(recording);
             runtime += recording.DURATION_IN_SECONDS;
@@ -61,7 +63,7 @@ public class Playlist implements Playable{
     }
 
     // removes a recording from the playlist based on its name
-    public boolean removeRecording (String name){
+    public boolean removeRecording(String name){
         for (Recording recording:listofRecordings){
             if (recording.NAME.equals(name)){
                 listofRecordings.remove(recording);
@@ -73,7 +75,7 @@ public class Playlist implements Playable{
     }
 
     // removes a recording from the playlist based on its index
-    public boolean removeRecording (int index){
+    public boolean removeRecording(int index){
         try{
             runtime -= listofRecordings.get(index).DURATION_IN_SECONDS;
             listofRecordings.remove(index);
@@ -85,7 +87,7 @@ public class Playlist implements Playable{
     }
 
     // plays a specific recording in the playlist based on the name
-    public void playRecording (String name){
+    public void play(String name) throws Unplayable{
         for (Recording recording:listofRecordings){
             if (recording.NAME.equals(name)){
                 recording.play();
@@ -94,26 +96,28 @@ public class Playlist implements Playable{
     }
 
     // plays a specific recording in the playlist based on the index
-    public void playRecording (int index){
+    public void play(int index) throws Unplayable{
         listofRecordings.get(index).play();
     }
 
     // plays the whole playlistindex
-    public void play (){
+    public void play() throws Unplayable{
         for (Recording recording:listofRecordings){
             recording.play();
         }
     }
 
     // randomly shuffles the recordings in the playlist
-    public void shuffle (){
+    public void shuffle(){
         Collections.shuffle(listofRecordings);
     }
 
     // saves the playlist to a .txt file
-    public boolean save (){
+    public boolean save(String username){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM_dd_yyyy_HH_mm_ss");
+        LocalDateTime now = LocalDateTime.now();
         try {
-            File myFile = new File("playlist.txt");
+            File myFile = new File(username + "_" + dtf.format(now) + ".csv");
             if (myFile.createNewFile()) {
                 System.out.println("File created: " + myFile.getName());
             } else {
