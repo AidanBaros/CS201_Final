@@ -71,6 +71,7 @@ public class Database {
                 return true; // returns true if it succsesfuly removed a user
             }
         }
+        System.out.println("Not an option");
         return false; // returns false if it did not remove a user
     }
 

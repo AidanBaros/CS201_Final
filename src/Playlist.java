@@ -47,6 +47,7 @@ public class Playlist implements Playable{
             return true;
         } catch (FileNotFoundException ex) {
             System.out.println("File not found.");
+            System.out.println(ex.getMessage());
             return false;
         } 
     }
@@ -125,7 +126,7 @@ public class Playlist implements Playable{
             }
             FileWriter myWriter = new FileWriter(myFile);
             for (Recording recording:listofRecordings){
-                myWriter.write(recording.toString());
+                myWriter.write(recording.getType() + ", " + recording.getName() + ", " + recording.getArtist() + ", " + recording.getDuration() + ", " + recording.getRate() + "\n");
             }
             myWriter.close();
             return true;
