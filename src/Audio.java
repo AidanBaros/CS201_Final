@@ -1,20 +1,31 @@
 public class Audio extends Recording{
     
     //creates final double for the bitrate object
-    private final double BITRATE;
+    private final double BITRATE;  
+    private final String TYPE;  
 
     //audio recording constructor with no parameters that calls the super method and intializles bitrate to 0
     public Audio(){
         super();
         BITRATE = 0;
+        TYPE = "A";
     }
 
     //audiorecoding constuructor with arguments of Artist, Name,  Seconds, and a new bitrate
     public Audio(String Name, String Artist, int Seconds, double BitRate){
         //calls the super consctuor with Artist, Name, and Seconds
-        super(Artist, Name, Seconds);
+        super(Name, Artist, Seconds);
         //sets bitrate to value
         BITRATE = BitRate;
+        TYPE = "A";
+    }
+
+    public double getRate(){
+        return BITRATE;
+    }
+
+    public String getType(){
+        return TYPE;
     }
 
     //toString

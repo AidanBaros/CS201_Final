@@ -1,20 +1,31 @@
 public class Video extends Recording{
     
     private final double FRAMERATE;
+    private final String TYPE;
 
     // non-peramiterized non-defult constructor 
     // super of Recording witht the addition of framerate
     public Video(){
         super();
         FRAMERATE = 0;
+        TYPE = "V";
     }
     
     //videorecording construcotr that sends in the artist, name, video length, and framereate
     public Video(String Name, String Artist, int Seconds, double FrameRate){
         //calls the super method and sends the artitst, name, and seconds
-        super(Artist, Name, Seconds);
+        super(Name, Artist, Seconds);
         //assigns framerate
         FRAMERATE = FrameRate;
+        TYPE = "V";
+    }
+
+    public double getRate(){
+        return FRAMERATE;
+    }
+
+    public String getType(){
+        return TYPE;
     }
 
     public void play() throws Unplayable{

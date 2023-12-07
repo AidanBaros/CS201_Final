@@ -1,12 +1,24 @@
 public class User implements Playable{
-    protected String name;
-    protected int ID;
-    protected Playlist playlist;
+    private String name;
+    private int ID;
+    private Playlist playlist;
 
     public User(String newName, int newID){
         name = newName;
         ID = newID;
         playlist = new Playlist();
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getID(){
+        return ID;
+    }
+
+    public Playlist getPlaylist(){
+        return playlist;
     }
 
     public boolean add(String type, String name, String artist, int duration, double rate){
@@ -65,7 +77,11 @@ public class User implements Playable{
     }
 
     public void shuffle(){
-        playlist.shuffle();
+        try{
+            playlist.shuffle();
+        }catch(Unplayable ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     public boolean export(){
@@ -75,7 +91,7 @@ public class User implements Playable{
     public void stats(){
         System.out.println("Username:" + name);
         System.out.println("ID:" + ID);
-        System.out.println("Playlist details:" + name);
+        System.out.println("Playlist details:");
         playlist.stats();
     }
 }
