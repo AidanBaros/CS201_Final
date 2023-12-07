@@ -1,9 +1,6 @@
 import java.util.ArrayList;
-//import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-//import java.io.OutputStreamWriter;
-//import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -108,8 +105,11 @@ public class Playlist implements Playable{
     }
 
     // randomly shuffles the recordings in the playlist
-    public void shuffle(){
+    public void shuffle() throws Unplayable{
+        ArrayList <Recording> tempList = listofRecordings;
         Collections.shuffle(listofRecordings);
+        play();
+        listofRecordings = tempList;
     }
 
     // saves the playlist to a .txt file
