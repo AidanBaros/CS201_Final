@@ -286,25 +286,6 @@ public class StreamingSystem {
         }
     }
 
-    public void removeRecording(){
-        System.out.println("Remove recording from playlist menu:");
-        System.out.println("[1] Remove recording by id");
-        System.out.println("[2] Remove recording by name");
-        System.out.println("[3] Go back to previous menu");
-        System.out.println("What is your choice?");
-        choice = keyboard.nextInt();
-    }
-
-    public void recordingMenu(){
-        System.out.println("Play individual recording menu:");
-        System.out.println("[1] Play recording by id");
-        System.out.println("[2] Play recording by name");
-        System.out.println("[3] Go back to previous menu");
-        System.out.println("What is your choice?");
-        choice = keyboard.nextInt();
-
-    }
-
     private boolean confirmCancel(){
         System.out.println("[1] Conferm\n[2] Cancel");
         int check = keyboard.nextInt();
